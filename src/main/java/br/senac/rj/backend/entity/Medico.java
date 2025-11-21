@@ -5,21 +5,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
-import java.util.HashSet;
-import java.util.Set;
 import lombok.Data;
 
 /**
  * 
  * @author luccas.bentim
- * Entidade que representa a tabela MEDICO.
+ * Entidade que representa a tabela medico.
  */
 @Entity
-@Table(name = "MEDICO")
+@Table(name = "medico")
 @Data
 public class Medico {
 
@@ -48,12 +43,4 @@ public class Medico {
 
     @Column(name = "senha", length = 64, nullable = false)
     private String senha;
-
-    @ManyToMany
-    @JoinTable(
-        name = "MEDICO_CONVENIO",
-        joinColumns = @JoinColumn(name = "id_medico", referencedColumnName = "id_medico"),
-        inverseJoinColumns = @JoinColumn(name = "id_convenio", referencedColumnName = "id_convenio")
-    )
-    private Set<Convenio> convenios = new HashSet<>();
 }
