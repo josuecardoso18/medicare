@@ -8,7 +8,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 public class ConvenioDao {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU2");
 
     public Convenio salvar(Convenio convenio) {
         EntityManager em = emf.createEntityManager();
