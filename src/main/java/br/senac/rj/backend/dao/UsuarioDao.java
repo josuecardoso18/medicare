@@ -7,7 +7,7 @@ import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
 public class UsuarioDao {
-	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU");
+	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU2");
 
 	public Usuario salvar(Usuario usuario) {
 		EntityManager em = emf.createEntityManager();
