@@ -8,7 +8,7 @@ import jakarta.persistence.TypedQuery;
 import java.util.List;
 
 public class MedicoDao {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU2");
 
     public Medico salvar(Medico medico) {
         EntityManager em = emf.createEntityManager();
