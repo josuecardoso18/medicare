@@ -2,6 +2,7 @@ package br.senac.rj.backend.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -31,11 +32,11 @@ public class Consulta {
     @Column(name = "prontuario", columnDefinition = "TEXT")
     private String prontuario;
 
-    @ManyToOne
-    @JoinColumn(name = "id_usuario_paciente", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario_paciente", referencedColumnName = "email", nullable = false)
     private Usuario paciente;
 
-    @ManyToOne
-    @JoinColumn(name = "id_medico", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_medico", referencedColumnName = "id_medico", nullable = false)
     private Medico medico;
 }

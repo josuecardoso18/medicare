@@ -2,11 +2,16 @@ package br.senac.rj.backend.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import java.util.Set;
 
 /**
  * 
@@ -26,8 +31,8 @@ public class Medico {
     @Column(name = "CRM", length = 20, nullable = false, unique = true)
     private String crm;
 
-    @Column(name = "nome_completo", length = 100, nullable = false)
-    private String nomeCompleto;
+    @Column(name = "nome", length = 100, nullable = false)
+    private String nome;
 
     @Column(name = "especialidade", length = 100, nullable = false)
     private String especialidade;
@@ -38,9 +43,11 @@ public class Medico {
     @Column(name = "foto_medico", length = 255)
     private String fotoMedico;
 
-    @Column(name = "email", length = 80, nullable = false)
-    private String email;
-
-    @Column(name = "senha", length = 64, nullable = false)
-    private String senha;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+        name = "medico_convenio",
+        joinColumns = @JoinColumn(name = "id_medico"),
+        inverseJoinColumns = @JoinColumn(name = "id_convenio")
+    )
+    private Set<Convenio> convenios;
 }

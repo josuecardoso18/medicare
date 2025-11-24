@@ -1,49 +1,95 @@
 package br.senac.rj.backend.dao;
 
-import br.senac.rj.backend.entity.Usuario;
-import br.senac.rj.backend.util.PasswordUtil;
+import br.senac.rj.backend.entity.Medico;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
+import java.util.List;
 
 public class MedicoDao {
-	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU");
 
-	public Usuario salvar(Usuario usuario) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			em.getTransaction().begin();
+    public Medico salvar(Medico medico) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Medico salvo = em.merge(medico);
+            em.getTransaction().commit();
+            return salvo;
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            e.printStackTrace();
+            return null;
+        } finally {
+            em.close();
+        }
+    }
 
-			// Gera hash da senha antes de salvar
-			if (usuario.getSenha() != null) {
-				usuario.setSenha(PasswordUtil.gerarHash(usuario.getSenha()));
-			}
+    public Medico buscarPorId(Long id) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.find(Medico.class, id);
+        } finally {
+            em.close();
+        }
+    }
 
-			Usuario usuarioSalvo = em.merge(usuario); // obter objeto completo salvo
-			em.getTransaction().commit();
-			return usuarioSalvo;
-		} catch (Exception e) {
-			if (em.getTransaction().isActive()) {
-				em.getTransaction().rollback(); // desfazer transações pendentes
-			}
-			e.printStackTrace(); // Para depuração
-			return null;
-		} finally {
-			em.close();
-		}
-	}
+    public List<Medico> listarTodos() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Medico> q = em.createQuery("select m from Medico m", Medico.class);
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 
-	public Usuario buscarPorEmailSenha(String email, String senha) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			Usuario usuario = em.find(Usuario.class, email); // busca pelo email
-			if (usuario != null && PasswordUtil.verificarSenha(senha, usuario.getSenha())) {
-				return usuario; // senha correta
-			}
-			return null; // usuário não encontrado ou senha incorreta
-		} finally {
-			em.close();
-		}
-	}
+    public List<Medico> buscarPorNome(String nomeParcial) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Medico> q = em.createQuery(
+                "select m from Medico m where lower(m.nome) like :p", Medico.class);
+            q.setParameter("p", "%" + nomeParcial.toLowerCase() + "%");
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 
+    public List<Medico> buscarPorEspecialidade(String especialidadeParcial) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Medico> q = em.createQuery(
+                "select m from Medico m where lower(m.especialidade) like :p", Medico.class);
+            q.setParameter("p", "%" + especialidadeParcial.toLowerCase() + "%");
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Medico> buscarPorEndereco(String enderecoParcial) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Medico> q = em.createQuery(
+                "select m from Medico m where lower(m.enderecoMedico) like :p", Medico.class);
+            q.setParameter("p", "%" + enderecoParcial.toLowerCase() + "%");
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Medico> buscarPorConvenioId(Integer idConvenio) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Medico> q = em.createQuery(
+                "select distinct m from Medico m join m.convenios c where c.id = :id", Medico.class);
+            q.setParameter("id", idConvenio);
+            return q.getResultList();
+        } finally {
+            em.close();
+        }
+    }
 }
