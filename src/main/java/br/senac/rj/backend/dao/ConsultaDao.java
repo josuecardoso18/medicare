@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 public class ConsultaDao {
-    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU");
+    private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU2");
 
     public Consulta salvar(Consulta consulta) {
         EntityManager em = emf.createEntityManager();
