@@ -41,7 +41,7 @@ public class ConsultaController {
             List<Consulta> l = service.listarPorMedicoId(medicoId);
             return Response.ok(l).build();
         }
-        // se nenhum filtro fornecido, retorna todas (ou vazio conforme política)
+        
         List<Consulta> todas = service.listarTodas();
         return Response.ok(todas).build();
     }
