@@ -30,13 +30,13 @@ public class ConsultaController {
         return service.salvar(t);
     }
     @GET
-    @Path("/consulta/{idConsulta}")
+    @Path("/{idConsulta}")
     public Response buscar(@PathParam("idConsulta") Long idConsulta) {
         return service.buscar(idConsulta);
     }
     
     @DELETE
-    @Path("/consulta/{idConsulta}")
+    @Path("/{idConsulta}")
     public Response deletar(@PathParam("idConsulta") Long idConsulta) {
         return service.deletar(idConsulta);
     }

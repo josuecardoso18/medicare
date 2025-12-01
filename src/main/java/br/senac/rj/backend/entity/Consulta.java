@@ -9,7 +9,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
@@ -23,11 +22,11 @@ import lombok.Data;
 public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_consulta")
-    private Long id_consulta;
+    @Column(name = "idConsulta")
+    private Long idConsulta;
 
     @Column(name = "data_hora", nullable = false)
-    private LocalDateTime dataHora;
+    private String dataHora;
 
     @Column(name = "prontuario", columnDefinition = "TEXT")
     private String prontuario;

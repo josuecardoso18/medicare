@@ -1,12 +1,9 @@
 package br.senac.rj.backend.dao;
 
-import java.util.List;
 import br.senac.rj.backend.entity.Consulta;
-import br.senac.rj.backend.entity.Turma;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
 
 public class ConsultaDao {
     private static final EntityManagerFactory emf =
@@ -16,9 +13,9 @@ public class ConsultaDao {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Consulta consultaSalva = em.merge(t); // obter objeto completo salvo
+            Consulta ConsultaSalva = em.merge(t); // obter objeto completo salvo
             em.getTransaction().commit();
-            return consultaSalva;
+            return ConsultaSalva;
         } catch (Exception e) {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback(); // desfazer transações pendentes
