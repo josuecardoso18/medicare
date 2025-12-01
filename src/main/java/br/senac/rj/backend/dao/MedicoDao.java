@@ -4,6 +4,7 @@ import br.senac.rj.backend.entity.Medico;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 public class MedicoDao {
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU2");
@@ -37,7 +38,10 @@ public class MedicoDao {
 	public Medico buscarPorNome(String nome) {
 		EntityManager em = emf.createEntityManager();
 		try {
-			return em.find(Medico.class, nome);
+	        TypedQuery<Medico> q = em.createQuery(
+                "SELECT m FROM Medico m WHERE m.nome = :nome", Medico.class);
+            q.setParameter("nome", nome);
+            return (Medico) q.getResultList();
 		} finally {
 			em.close();
 		}
@@ -45,7 +49,10 @@ public class MedicoDao {
 	public Medico buscarPorEsp(String especialidade) {
 		EntityManager em = emf.createEntityManager();
 		try {
-			return em.find(Medico.class, especialidade);
+	        TypedQuery<Medico> q = em.createQuery(
+                "SELECT m FROM Medico m WHERE m.especialidade = :especialidade", Medico.class);
+            q.setParameter("especialidade", especialidade);
+            return (Medico) q.getResultList();
 		} finally {
 			em.close();
 		}
@@ -53,7 +60,10 @@ public class MedicoDao {
 	public Medico buscarPorEnd(String endereco) {
 		EntityManager em = emf.createEntityManager();
 		try {
-			return em.find(Medico.class, endereco);
+	        TypedQuery<Medico> q = em.createQuery(
+                "SELECT m FROM Medico m WHERE m.endereco = :endereco", Medico.class);
+            q.setParameter("endereco", endereco);
+            return (Medico) q.getResultList();
 		} finally {
 			em.close();
 		}

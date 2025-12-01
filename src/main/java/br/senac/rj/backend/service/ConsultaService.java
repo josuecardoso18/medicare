@@ -1,5 +1,7 @@
 package br.senac.rj.backend.service;
 
+import java.util.List;
+
 import br.senac.rj.backend.dao.ConsultaDao;
 import br.senac.rj.backend.entity.Consulta;
 import jakarta.ws.rs.core.Response;
@@ -10,7 +12,7 @@ import jakarta.ws.rs.core.Response;
  * Classe que tem a função de centralizar a lógica de negócio relacionada à entidade Turma.
  */
 public class ConsultaService {
-    private final ConsultaDao dao = new ConsultaDao();
+	private final ConsultaDao dao = new ConsultaDao();
 
     public Response salvar(Consulta t) {
         Consulta ConsultaSalva = dao.salvar(t);
@@ -22,8 +24,8 @@ public class ConsultaService {
         return Response.ok(ConsultaSalva).build();
     }
     
-    public Response buscar(Long id_consulta) {
-    	Consulta ConsultaObtida = dao.buscarPorIdConsulta(id_consulta);
+    public Response buscar(Long idConsulta) {
+    	Consulta ConsultaObtida = dao.buscarPorIdConsulta(idConsulta);
         if (ConsultaObtida == null) {
             return Response.status(Response.Status.NOT_FOUND)
             		.entity("{\"erro\":\"Consulta não encontrada.\"}")
@@ -32,14 +34,14 @@ public class ConsultaService {
         return Response.ok(ConsultaObtida).build();
     }
     
-    public Response buscarPorMed(Long id) {
-    	Consulta ConsultaObtida = dao.buscarPorIdMed(id);
-        if (ConsultaObtida == null) {
+    public Response buscarPorMed(Long idMedico) {
+    	List<Consulta> consultas = dao.buscarPorIdMed(idMedico);
+        if (consultas == null || consultas.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND)
-            		.entity("{\"erro\":\"Consulta não encontrada.\"}")
+            		.entity("{\"erro\":\"Nenhuma consulta encontrada para esse médico.\"}")
             		.build();
         }
-        return Response.ok(ConsultaObtida).build();
+        return Response.ok(consultas).build();
     }
     
     public Response deletar(Long id_consulta) {

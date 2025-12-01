@@ -37,19 +37,19 @@ public class MedicoController {
     }
     
     @GET
-    @Path("/{nome}")
+    @Path("/nome/{nome}")
     public Response buscarPorNome(@PathParam("nome") String nome) {
         return service.buscarPorNome(nome);
     }
     
     @GET
-    @Path("/{especialidade}")
+    @Path("/especialidade/{especialidade}")
     public Response buscarPorEsp(@PathParam("especialidade") String especialidade) {
         return service.buscarPorEsp(especialidade);
     }
     
     @GET
-    @Path("/{endereco}")
+    @Path("/endereco/{endereco}")
     public Response buscarPorEnd(@PathParam("endereco") String endereco) {
         return service.buscarPorEnd(endereco);
     }

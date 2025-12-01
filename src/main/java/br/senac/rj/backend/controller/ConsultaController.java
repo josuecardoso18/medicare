@@ -30,21 +30,21 @@ public class ConsultaController {
         return service.salvar(t);
     }
     @GET
-    @Path("/{id_consulta}")
-    public Response buscar(@PathParam("id_consulta") Long id_consulta) {
-        return service.buscar(id_consulta);
+    @Path("/consulta/{idConsulta}")
+    public Response buscar(@PathParam("idConsulta") Long idConsulta) {
+        return service.buscar(idConsulta);
     }
     
     @GET
-    @Path("/{id}")
-    public Response buscarPorMed(@PathParam("id") Long id) {
-        return service.buscarPorMed(id);
+    @Path("/medico/{idMedico}")
+    public Response buscarPorMed(@PathParam("idMedico") Long idMedico) {
+        return service.buscarPorMed(idMedico);
     }
     
     @DELETE
-    @Path("/{id_consulta}")
-    public Response deletar(@PathParam("id_consulta") Long id_consulta) {
-        return service.deletar(id_consulta);
+    @Path("/consulta/{idConsulta}")
+    public Response deletar(@PathParam("idConsulta") Long idConsulta) {
+        return service.deletar(idConsulta);
     }
     
 }

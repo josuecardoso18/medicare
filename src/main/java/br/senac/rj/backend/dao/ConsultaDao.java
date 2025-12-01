@@ -1,9 +1,11 @@
 package br.senac.rj.backend.dao;
 
+import java.util.List;
 import br.senac.rj.backend.entity.Consulta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 public class ConsultaDao {
     private static final EntityManagerFactory emf =
@@ -27,29 +29,32 @@ public class ConsultaDao {
         }
     }
 
-    public Consulta buscarPorIdConsulta(Long id_consulta) {
+    public Consulta buscarPorIdConsulta(Long idConsulta) {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.find(Consulta.class, id_consulta);
+            return em.find(Consulta.class, idConsulta);
         } finally {
             em.close();
         }
     }
     
-    public Consulta buscarPorIdMed(Long id) {
+    public List<Consulta> buscarPorIdMed(Long idMedico) {
         EntityManager em = emf.createEntityManager();
         try {
-            return em.find(Consulta.class, id);
+            TypedQuery<Consulta> q = em.createQuery(
+                "SELECT c FROM Consulta c WHERE c.medico.id = :idMedico", Consulta.class);
+            q.setParameter("idMedico", idMedico);
+            return (List<Consulta>) q.getResultList();
         } finally {
             em.close();
         }
     }
     
-    public boolean deletarPorId(Long id_consulta) {
+    public boolean deletarPorId(Long idConsulta) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Consulta c = em.find(Consulta.class, id_consulta);
+            Consulta c = em.find(Consulta.class, idConsulta);
             if (c == null) {
                 em.getTransaction().rollback();
                 return false;
