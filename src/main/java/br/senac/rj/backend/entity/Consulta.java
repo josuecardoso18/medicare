@@ -37,6 +37,6 @@ public class Consulta {
     private Usuario paciente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_medico", referencedColumnName = "id_medico", nullable = false)
+    @JoinColumn(name = "idMedico", referencedColumnName = "id_medico", nullable = false)
     private Medico medico;
 }

@@ -19,7 +19,6 @@ public class JaxRsApplication extends Application {
         // adiciona recursos REST
         resources.add(br.senac.rj.backend.controller.UsuarioController.class);
         resources.add(br.senac.rj.backend.controller.MedicoController.class);
-        resources.add(br.senac.rj.backend.controller.ConvenioController.class);
         resources.add(br.senac.rj.backend.controller.ConsultaController.class);
 //      resources.add(br.senac.rj.backend.controller.AlunoController.class);
 //      resources.add(br.senac.rj.backend.controller.TurmaController.class);
