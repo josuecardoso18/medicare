@@ -34,4 +34,28 @@ public class MedicoDao {
 			em.close();
 		}
 	}
+	public Medico buscarPorNome(String nome) {
+		EntityManager em = emf.createEntityManager();
+		try {
+			return em.find(Medico.class, nome);
+		} finally {
+			em.close();
+		}
+	}
+	public Medico buscarPorEsp(String especialidade) {
+		EntityManager em = emf.createEntityManager();
+		try {
+			return em.find(Medico.class, especialidade);
+		} finally {
+			em.close();
+		}
+	}
+	public Medico buscarPorEnd(String endereco) {
+		EntityManager em = emf.createEntityManager();
+		try {
+			return em.find(Medico.class, endereco);
+		} finally {
+			em.close();
+		}
+	}
 }

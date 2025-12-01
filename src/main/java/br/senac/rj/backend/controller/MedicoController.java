@@ -34,4 +34,23 @@ public class MedicoController {
     public Response buscar(@PathParam("id") Long id) {
         return service.buscar(id);
     }
+    
+    @GET
+    @Path("/{nome}")
+    public Response buscarPorNome(@PathParam("nome") String nome) {
+        return service.buscarPorNome(nome);
+    }
+    
+    @GET
+    @Path("/{especialidade}")
+    public Response buscarPorEsp(@PathParam("especialidade") String especialidade) {
+        return service.buscarPorEsp(especialidade);
+    }
+    
+    @GET
+    @Path("/{endereco}")
+    public Response buscarPorEnd(@PathParam("endereco") String endereco) {
+        return service.buscarPorEsp(endereco);
+    }
+   
 }

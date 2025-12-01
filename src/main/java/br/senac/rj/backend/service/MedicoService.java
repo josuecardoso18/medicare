@@ -32,4 +32,34 @@ public class MedicoService {
         }
         return Response.ok(MedicoObtido).build();
     }
+    
+    public Response buscarPorNome(String nome) {
+        Medico MedicoObtido = dao.buscarPorNome(nome);
+        if (MedicoObtido == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+            		.entity("{\"erro\":\"Médico não encontrado.\"}")
+            		.build();
+        }
+        return Response.ok(MedicoObtido).build();
+    }
+    
+    public Response buscarPorEsp(String especialidade) {
+        Medico MedicoObtido = dao.buscarPorEsp(especialidade);
+        if (MedicoObtido == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+            		.entity("{\"erro\":\"Médico não encontrado.\"}")
+            		.build();
+        }
+        return Response.ok(MedicoObtido).build();
+    }
+    
+    public Response buscarPorEnd(String endereco) {
+        Medico MedicoObtido = dao.buscarPorEsp(endereco);
+        if (MedicoObtido == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+            		.entity("{\"erro\":\"Médico não encontrado.\"}")
+            		.build();
+        }
+        return Response.ok(MedicoObtido).build();
+    }
 }

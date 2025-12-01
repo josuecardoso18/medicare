@@ -29,8 +29,15 @@ public class ConsultaController {
         return service.salvar(t);
     }
     @GET
-    @Path("/{id}")
-    public Response buscar(@PathParam("id") Long id) {
-        return service.buscar(id);
+    @Path("/{id_consulta}")
+    public Response buscar(@PathParam("id_consulta") Long id_consulta) {
+        return service.buscar(id_consulta);
     }
+    
+    @GET
+    @Path("/{id}")
+    public Response buscarPorMed(@PathParam("id") Long id) {
+        return service.buscarPorMed(id);
+    }
+    
 }

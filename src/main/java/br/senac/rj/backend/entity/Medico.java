@@ -20,8 +20,8 @@ public class Medico {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_medico")
-    private Long idMedico;
+    @Column(name = "id")
+    private Long id;
 
     @Column(name = "nome", length = 80, nullable = false)
     private String nome;
@@ -29,9 +29,9 @@ public class Medico {
     @Column(name = "especialidade", length = 100, nullable = false)
     private String especialidade;
 
-    @Column(name = "endereco_medico", length = 255, nullable = false)
-    private String enderecoMedico;
+    @Column(name = "endereco", length = 255, nullable = false)
+    private String endereco;
 
-    @Column(name = "foto_medico", length = 255)
-    private String fotoMedico;
+    @Column(name = "foto_perfil", length = 255)
+    private String foto_perfil;
 }

@@ -24,7 +24,7 @@ public class Consulta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_consulta")
-    private Long idConsulta;
+    private Long id_consulta;
 
     @Column(name = "data_hora", nullable = false)
     private LocalDateTime dataHora;
@@ -33,10 +33,10 @@ public class Consulta {
     private String prontuario;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_usuario_paciente", referencedColumnName = "email", nullable = false)
+    @JoinColumn(name = "email", referencedColumnName = "email", nullable = false)
     private Usuario paciente;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "idMedico", referencedColumnName = "id_medico", nullable = false)
+    @JoinColumn(name = "id", referencedColumnName = "id", nullable = false)
     private Medico medico;
 }

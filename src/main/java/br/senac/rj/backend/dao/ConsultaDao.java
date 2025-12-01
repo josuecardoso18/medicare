@@ -27,7 +27,16 @@ public class ConsultaDao {
         }
     }
 
-    public Consulta buscarPorId(Long id) {
+    public Consulta buscarPorIdConsulta(Long id_consulta) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.find(Consulta.class, id_consulta);
+        } finally {
+            em.close();
+        }
+    }
+    
+    public Consulta buscarPorIdMed(Long id) {
         EntityManager em = emf.createEntityManager();
         try {
             return em.find(Consulta.class, id);

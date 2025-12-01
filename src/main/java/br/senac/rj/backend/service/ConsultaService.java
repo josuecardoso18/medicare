@@ -22,8 +22,18 @@ public class ConsultaService {
         return Response.ok(ConsultaSalva).build();
     }
     
-    public Response buscar(Long id) {
-    	Consulta ConsultaObtida = dao.buscarPorId(id);
+    public Response buscar(Long id_consulta) {
+    	Consulta ConsultaObtida = dao.buscarPorIdConsulta(id_consulta);
+        if (ConsultaObtida == null) {
+            return Response.status(Response.Status.NOT_FOUND)
+            		.entity("{\"erro\":\"Consulta não encontrada.\"}")
+            		.build();
+        }
+        return Response.ok(ConsultaObtida).build();
+    }
+    
+    public Response buscarPorMed(Long id) {
+    	Consulta ConsultaObtida = dao.buscarPorIdMed(id);
         if (ConsultaObtida == null) {
             return Response.status(Response.Status.NOT_FOUND)
             		.entity("{\"erro\":\"Consulta não encontrada.\"}")
