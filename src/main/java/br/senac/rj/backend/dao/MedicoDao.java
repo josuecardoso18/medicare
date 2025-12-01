@@ -38,10 +38,7 @@ public class MedicoDao {
 	public Medico buscarPorNome(String nome) {
 		EntityManager em = emf.createEntityManager();
 		try {
-	        TypedQuery<Medico> q = em.createQuery(
-                "SELECT m FROM Medico m WHERE m.nome = :nome", Medico.class);
-            q.setParameter("nome", nome);
-            return (Medico) q.getResultList();
+			return em.find(Medico.class, nome);
 		} finally {
 			em.close();
 		}
@@ -49,10 +46,7 @@ public class MedicoDao {
 	public Medico buscarPorEsp(String especialidade) {
 		EntityManager em = emf.createEntityManager();
 		try {
-	        TypedQuery<Medico> q = em.createQuery(
-                "SELECT m FROM Medico m WHERE m.especialidade = :especialidade", Medico.class);
-            q.setParameter("especialidade", especialidade);
-            return (Medico) q.getResultList();
+			return em.find(Medico.class, especialidade);
 		} finally {
 			em.close();
 		}
@@ -60,10 +54,7 @@ public class MedicoDao {
 	public Medico buscarPorEnd(String endereco) {
 		EntityManager em = emf.createEntityManager();
 		try {
-	        TypedQuery<Medico> q = em.createQuery(
-                "SELECT m FROM Medico m WHERE m.endereco = :endereco", Medico.class);
-            q.setParameter("endereco", endereco);
-            return (Medico) q.getResultList();
+			return em.find(Medico.class, endereco);
 		} finally {
 			em.close();
 		}

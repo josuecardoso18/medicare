@@ -35,12 +35,6 @@ public class ConsultaController {
         return service.buscar(idConsulta);
     }
     
-    @GET
-    @Path("/medico/{idMedico}")
-    public Response buscarPorMed(@PathParam("idMedico") Long idMedico) {
-        return service.buscarPorMed(idMedico);
-    }
-    
     @DELETE
     @Path("/consulta/{idConsulta}")
     public Response deletar(@PathParam("idConsulta") Long idConsulta) {

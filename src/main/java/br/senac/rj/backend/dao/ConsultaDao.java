@@ -2,6 +2,7 @@ package br.senac.rj.backend.dao;
 
 import java.util.List;
 import br.senac.rj.backend.entity.Consulta;
+import br.senac.rj.backend.entity.Turma;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -29,22 +30,10 @@ public class ConsultaDao {
         }
     }
 
-    public Consulta buscarPorIdConsulta(Long idConsulta) {
+    public Consulta buscarPorId(Long idConsulta) {
         EntityManager em = emf.createEntityManager();
         try {
             return em.find(Consulta.class, idConsulta);
-        } finally {
-            em.close();
-        }
-    }
-    
-    public List<Consulta> buscarPorIdMed(Long idMedico) {
-        EntityManager em = emf.createEntityManager();
-        try {
-            TypedQuery<Consulta> q = em.createQuery(
-                "SELECT c FROM Consulta c WHERE c.medico.id = :idMedico", Consulta.class);
-            q.setParameter("idMedico", idMedico);
-            return (List<Consulta>) q.getResultList();
         } finally {
             em.close();
         }

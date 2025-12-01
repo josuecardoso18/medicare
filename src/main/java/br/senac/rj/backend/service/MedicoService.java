@@ -1,6 +1,7 @@
 package br.senac.rj.backend.service;
 
 import br.senac.rj.backend.dao.MedicoDao;
+import br.senac.rj.backend.entity.Aluno;
 import br.senac.rj.backend.entity.Medico;
 import jakarta.ws.rs.core.Response;
 import java.util.List;
@@ -34,33 +35,34 @@ public class MedicoService {
     }
     
     public Response buscarPorNome(String nome) {
-        List<Medico> medicos = (List<Medico>) dao.buscarPorNome(nome);
-        if (medicos == null || medicos.isEmpty()) {
+        Medico MedicoObtido = dao.buscarPorNome(nome);
+        if (MedicoObtido == null) {
             return Response.status(Response.Status.NOT_FOUND)
             		.entity("{\"erro\":\"Nenhum médico encontrado com esse nome.\"}")
             		.build();
         }
-        return Response.ok(medicos).build();
+        return Response.ok(MedicoObtido).build();
     }
     
     public Response buscarPorEsp(String especialidade) {
-        List<Medico> medicos = (List<Medico>) dao.buscarPorEsp(especialidade);
-        if (medicos == null || medicos.isEmpty()) {
+        Medico MedicoObtido = dao.buscarPorEsp(especialidade);
+        if (MedicoObtido == null) {
             return Response.status(Response.Status.NOT_FOUND)
-            		.entity("{\"erro\":\"Nenhum médico encontrado para essa especialidade.\"}")
+            		.entity("{\"erro\":\"Nenhum médico encontrado por essa especialidade.\"}")
             		.build();
         }
-        return Response.ok(medicos).build();
+        return Response.ok(MedicoObtido).build();
     }
     
+    
     public Response buscarPorEnd(String endereco) {
-        List<Medico> medicos = (List<Medico>) dao.buscarPorEnd(endereco);
-        if (medicos == null || medicos.isEmpty()) {
+        Medico MedicoObtido = dao.buscarPorEsp(endereco);
+        if (MedicoObtido == null) {
             return Response.status(Response.Status.NOT_FOUND)
-            		.entity("{\"erro\":\"Nenhum médico encontrado para esse endereço.\"}")
+            		.entity("{\"erro\":\"Nenhum médico encontrado por esse endereço.\"}")
             		.build();
         }
-        return Response.ok(medicos).build();
+        return Response.ok(MedicoObtido).build();
     }
     
     public Response deletar(Long id) {
