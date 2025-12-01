@@ -4,6 +4,7 @@ import br.senac.rj.backend.entity.Medico;
 import br.senac.rj.backend.service.MedicoService;
 
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -50,7 +51,13 @@ public class MedicoController {
     @GET
     @Path("/{endereco}")
     public Response buscarPorEnd(@PathParam("endereco") String endereco) {
-        return service.buscarPorEsp(endereco);
+        return service.buscarPorEnd(endereco);
+    }
+    
+    @DELETE
+    @Path("/{id}")
+    public Response deletar(@PathParam("id") Long id) {
+        return service.deletar(id);
     }
    
 }

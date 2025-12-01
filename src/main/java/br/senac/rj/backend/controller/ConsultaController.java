@@ -4,6 +4,7 @@ import br.senac.rj.backend.entity.Consulta;
 import br.senac.rj.backend.service.ConsultaService;
 
 import jakarta.ws.rs.Consumes;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -38,6 +39,12 @@ public class ConsultaController {
     @Path("/{id}")
     public Response buscarPorMed(@PathParam("id") Long id) {
         return service.buscarPorMed(id);
+    }
+    
+    @DELETE
+    @Path("/{id_consulta}")
+    public Response deletar(@PathParam("id_consulta") Long id_consulta) {
+        return service.deletar(id_consulta);
     }
     
 }

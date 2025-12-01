@@ -41,4 +41,21 @@ public class ConsultaService {
         }
         return Response.ok(ConsultaObtida).build();
     }
+    
+    public Response deletar(Long id_consulta) {
+        try {
+            boolean removed = dao.deletarPorId(id_consulta);
+            if (!removed) {
+                return Response.status(Response.Status.NOT_FOUND)
+                               .entity("{\"erro\":\"Consulta não encontrada.\"}")
+                               .build();
+            }
+            return Response.noContent().build(); // 204
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                           .entity("{\"erro\":\"Erro ao excluir consulta.\"}")
+                           .build();
+        }
+    }
+
 }

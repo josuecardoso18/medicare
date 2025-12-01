@@ -62,4 +62,21 @@ public class MedicoService {
         }
         return Response.ok(MedicoObtido).build();
     }
+    
+    public Response deletar(Long id) {
+        try {
+            boolean removed = dao.deletarPorId(id);
+            if (!removed) {
+                return Response.status(Response.Status.NOT_FOUND)
+                               .entity("{\"erro\":\"Médico não encontrado.\"}")
+                               .build();
+            }
+            return Response.noContent().build(); // 204
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+                           .entity("{\"erro\":\"Erro ao excluir médico.\"}")
+                           .build();
+        }
+    }
+
 }

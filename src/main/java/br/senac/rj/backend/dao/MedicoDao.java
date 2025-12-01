@@ -58,4 +58,25 @@ public class MedicoDao {
 			em.close();
 		}
 	}
+	
+	public boolean deletarPorId(Long id) {
+	    EntityManager em = emf.createEntityManager();
+	    try {
+	        em.getTransaction().begin();
+	        Medico m = em.find(Medico.class, id);
+	        if (m == null) {
+	            em.getTransaction().rollback();
+	            return false;
+	        }
+	        em.remove(m);
+	        em.getTransaction().commit();
+	        return true;
+	    } catch (Exception e) {
+	        if (em.getTransaction().isActive()) em.getTransaction().rollback();
+	        throw e;
+	    } finally {
+	        em.close();
+	    }
+	}
+
 }

@@ -44,4 +44,25 @@ public class ConsultaDao {
             em.close();
         }
     }
+    
+    public boolean deletarPorId(Long id_consulta) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            em.getTransaction().begin();
+            Consulta c = em.find(Consulta.class, id_consulta);
+            if (c == null) {
+                em.getTransaction().rollback();
+                return false;
+            }
+            em.remove(c);
+            em.getTransaction().commit();
+            return true;
+        } catch (Exception e) {
+            if (em.getTransaction().isActive()) em.getTransaction().rollback();
+            throw e;
+        } finally {
+            em.close();
+        }
+    }
+
 }
