@@ -26,8 +26,8 @@ public class ConsultaController {
     
     @POST
     @Path("/salvar")
-    public Response salvar(Consulta t) {
-        return service.salvar(t);
+    public Response salvar(Consulta c) {
+        return service.salvar(c);
     }
     @GET
     @Path("/{idConsulta}")
