@@ -9,11 +9,11 @@ public class ConsultaDao {
     private static final EntityManagerFactory emf =
             Persistence.createEntityManagerFactory("backendPU2");
 
-    public Consulta salvar(Consulta t) {
+    public Consulta salvar(Consulta consulta) {
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
-            Consulta ConsultaSalva = em.merge(t); // obter objeto completo salvo
+            Consulta ConsultaSalva = em.merge(consulta); // obter objeto completo salvo
             em.getTransaction().commit();
             return ConsultaSalva;
         } catch (Exception e) {
