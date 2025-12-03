@@ -26,8 +26,8 @@ public class MedicoController {
 
     @POST
     @Path("/salvar")
-    public Response salvar(Medico a) {
-        return service.salvar(a);
+    public Response salvar(Medico m) {
+        return service.salvar(m);
     }
 
     @GET
