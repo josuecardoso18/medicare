@@ -4,7 +4,6 @@ import br.senac.rj.backend.entity.Medico;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import jakarta.persistence.TypedQuery;
 
 public class MedicoDao {
 	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory("backendPU2");
