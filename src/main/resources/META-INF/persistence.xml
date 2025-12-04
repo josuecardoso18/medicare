@@ -10,7 +10,9 @@
 		<class>br.senac.rj.backend.entity.Usuario</class>
 		<class>br.senac.rj.backend.entity.Aluno</class>
 		<class>br.senac.rj.backend.entity.Turma</class>
-
+		<class>br.senac.rj.backend.entity.Consulta</class>
+		<class>br.senac.rj.backend.entity.Medico</class>
+		
 		<properties>
 			<!-- Classes das tabelas -->
 			<property name="jakarta.persistence.jdbc.driver"

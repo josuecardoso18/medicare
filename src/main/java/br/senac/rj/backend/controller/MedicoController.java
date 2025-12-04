@@ -31,31 +31,31 @@ public class MedicoController {
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/buscar/{id}")
     public Response buscar(@PathParam("id") Long id) {
         return service.buscar(id);
     }
     
     @GET
-    @Path("/{nome}")
+    @Path("/buscarPorNome/{nome}")
     public Response buscarPorNome(@PathParam("nome") String nome) {
         return service.buscarPorNome(nome);
     }
     
     @GET
-    @Path("/{especialidade}")
+    @Path("/buscarPorEsp/{especialidade}")
     public Response buscarPorEsp(@PathParam("especialidade") String especialidade) {
         return service.buscarPorEsp(especialidade);
     }
     
     @GET
-    @Path("/{endereco}")
+    @Path("/buscarPorEnd/{endereco}")
     public Response buscarPorEnd(@PathParam("endereco") String endereco) {
         return service.buscarPorEnd(endereco);
     }
     
     @DELETE
-    @Path("/{id}")
+    @Path("deletar/{id}")
     public Response deletar(@PathParam("id") Long id) {
         return service.deletar(id);
     }
