@@ -8,8 +8,6 @@
 		transaction-type="RESOURCE_LOCAL">
 		<!-- Classes das tabelas -->
 		<class>br.senac.rj.backend.entity.Usuario</class>
-		<class>br.senac.rj.backend.entity.Aluno</class>
-		<class>br.senac.rj.backend.entity.Turma</class>
 		<class>br.senac.rj.backend.entity.Consulta</class>
 		<class>br.senac.rj.backend.entity.Medico</class>
 		

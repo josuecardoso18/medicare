@@ -1,5 +1,7 @@
 package br.senac.rj.backend.entity;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -26,7 +28,7 @@ public class Consulta {
     private Long idConsulta;
 
     @Column(name = "data_hora", nullable = false)
-    private String dataHora;
+    private LocalDateTime dataHora;
 
     @Column(name = "prontuario", columnDefinition = "TEXT")
     private String prontuario;

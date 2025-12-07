@@ -1,5 +1,7 @@
 package br.senac.rj.backend.service;
 
+import java.util.List;
+
 import br.senac.rj.backend.dao.ConsultaDao;
 import br.senac.rj.backend.entity.Consulta;
 import jakarta.ws.rs.core.Response;
@@ -31,6 +33,17 @@ public class ConsultaService {
         }
         return Response.ok(ConsultaObtida).build();
     }
+    
+    public Response buscarPorPaciente(String emailPaciente) {
+        List<Consulta> consultas = dao.buscarPorPaciente(emailPaciente);
+        if (consultas.isEmpty()) {
+            return Response.status(Response.Status.NOT_FOUND)
+                           .entity("{\"erro\":\"Nenhuma consulta encontrada para este paciente.\"}")
+                           .build();
+        }
+        return Response.ok(consultas).build();
+    }
+
     
     public Response deletar(Long id_consulta) {
         try {

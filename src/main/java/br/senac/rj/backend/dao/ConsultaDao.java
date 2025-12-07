@@ -1,5 +1,7 @@
 package br.senac.rj.backend.dao;
 
+import java.util.List;
+
 import br.senac.rj.backend.entity.Consulta;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -35,6 +37,18 @@ public class ConsultaDao {
             em.close();
         }
     }
+    
+    public List<Consulta> buscarPorPaciente(String emailPaciente) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            return em.createQuery("SELECT c FROM Consulta c WHERE c.paciente.email = :email", Consulta.class)
+                     .setParameter("email", emailPaciente)
+                     .getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
     
     public boolean deletarPorId(Long idConsulta) {
         EntityManager em = emf.createEntityManager();

@@ -1,5 +1,7 @@
 package br.senac.rj.backend.dao;
 
+import java.util.List;
+
 import br.senac.rj.backend.entity.Medico;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
@@ -34,30 +36,64 @@ public class MedicoDao {
 			em.close();
 		}
 	}
-	public Medico buscarPorNome(String nome) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			return em.find(Medico.class, nome);
-		} finally {
-			em.close();
-		}
+//	public Medico buscarPorNome(String nome) {
+//		EntityManager em = emf.createEntityManager();
+//		try {
+//			return em.find(Medico.class, nome);
+//		} finally {
+//			em.close();
+//		}
+//	}
+//	public Medico buscarPorEsp(String especialidade) {
+//		EntityManager em = emf.createEntityManager();
+//		try {
+//			return em.find(Medico.class, especialidade);
+//		} finally {
+//			em.close();
+//		}
+//	}
+//	public Medico buscarPorEnd(String endereco) {
+//		EntityManager em = emf.createEntityManager();
+//		try {
+//			return em.find(Medico.class, endereco);
+//		} finally {
+//			em.close();
+//		}
+//	}
+	
+	public List<Medico> buscarPorNome(String nome) {
+	    EntityManager em = emf.createEntityManager();
+	    try {
+	        return em.createQuery("SELECT m FROM Medico m WHERE m.nome = :nome", Medico.class)
+	                 .setParameter("nome", nome)
+	                 .getResultList();
+	    } finally {
+	        em.close();
+	    }
 	}
-	public Medico buscarPorEsp(String especialidade) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			return em.find(Medico.class, especialidade);
-		} finally {
-			em.close();
-		}
+
+	public List<Medico> buscarPorEspecialidade(String especialidade) {
+	    EntityManager em = emf.createEntityManager();
+	    try {
+	        return em.createQuery("SELECT m FROM Medico m WHERE m.especialidade = :esp", Medico.class)
+	                 .setParameter("esp", especialidade)
+	                 .getResultList();
+	    } finally {
+	        em.close();
+	    }
 	}
-	public Medico buscarPorEnd(String endereco) {
-		EntityManager em = emf.createEntityManager();
-		try {
-			return em.find(Medico.class, endereco);
-		} finally {
-			em.close();
-		}
+
+	public List<Medico> buscarPorEndereco(String endereco) {
+	    EntityManager em = emf.createEntityManager();
+	    try {
+	        return em.createQuery("SELECT m FROM Medico m WHERE m.endereco = :end", Medico.class)
+	                 .setParameter("end", endereco)
+	                 .getResultList();
+	    } finally {
+	        em.close();
+	    }
 	}
+
 	
 	public boolean deletarPorId(Long id) {
 	    EntityManager em = emf.createEntityManager();
