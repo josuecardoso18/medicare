@@ -1,10 +1,15 @@
 package br.senac.rj.backend.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -34,4 +39,8 @@ public class Medico {
 
     @Column(name = "foto_perfil", length = 255)
     private String foto_perfil;
+    
+    @OneToMany(mappedBy = "medico")
+    @JsonIgnore
+    private List<Consulta> consultas;
 }

@@ -44,3 +44,49 @@ public class Main {
         server.join();
     }
 }
+
+//package br.senac.rj.backend;
+//
+//import org.eclipse.jetty.server.Server;
+//import org.eclipse.jetty.servlet.ServletContextHandler;
+//import org.eclipse.jetty.servlet.ServletHolder;
+//import org.glassfish.jersey.server.ResourceConfig;
+//import org.glassfish.jersey.servlet.ServletContainer;
+//import org.glassfish.jersey.jackson.JacksonFeature;
+//
+//import com.fasterxml.jackson.databind.ObjectMapper;
+//import com.fasterxml.jackson.databind.SerializationFeature;
+//import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+//import org.glassfish.jersey.jackson.internal.jackson.jaxrs.json.JacksonJaxbJsonProvider;
+//
+//public class Main {
+//    public static void main(String[] args) throws Exception {
+//        int port = 8080;
+//        Server server = new Server(port);
+//
+//        ServletContextHandler context = new ServletContextHandler(ServletContextHandler.SESSIONS);
+//        context.setContextPath("/");
+//
+//        // Configuração do Jersey com Jackson
+//        ResourceConfig rc = new ResourceConfig()
+//            .packages("br.senac.rj.backend.controller", "br.senac.rj.backend.filter")
+//            .register(org.glassfish.jersey.jackson.JacksonFeature.class);
+//
+//        // Cria e configura o ObjectMapper
+//        ObjectMapper mapper = new ObjectMapper();
+//        mapper.registerModule(new JavaTimeModule());
+//        mapper.disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS);
+//        
+//        // Registra o provider com esse ObjectMapper
+//        rc.register(new JacksonJaxbJsonProvider(mapper, JacksonJaxbJsonProvider.DEFAULT_ANNOTATIONS));
+//
+//        // Usa o ResourceConfig no ServletContainer
+//        ServletHolder jerseyServlet = new ServletHolder(new ServletContainer(rc));
+//        context.addServlet(jerseyServlet, "/api/*");
+//
+//        server.setHandler(context);
+//        server.start();
+//        System.out.println("Servidor iniciado em http://localhost:" + port + "/api");
+//        server.join();
+//    }
+//}

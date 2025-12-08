@@ -35,6 +35,13 @@ public class ConsultaController {
         return service.buscar(idConsulta);
     }
     
+    @GET
+    @Path("/listarPorPaciente/{email}")
+    public Response listarPorPaciente(@PathParam("email") String email) {
+        return service.buscarPorPaciente(email);
+    }
+
+    
     @DELETE
     @Path("/deletar/{idConsulta}")
     public Response deletar(@PathParam("idConsulta") Long idConsulta) {

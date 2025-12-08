@@ -92,13 +92,6 @@
 			<version>${jersey.version}</version>
 		</dependency>
 
-		<!-- Jersey JSON support (opcional, se usar JSON) -->
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-binding</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-
 		<!-- Tratamento de token JWT -->
 		<dependency>
 			<groupId>io.jsonwebtoken</groupId>
@@ -117,6 +110,37 @@
 			<version>${jsonwebtoken.version}</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Jackson Core + Annotations -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-core</artifactId>
+		    <version>2.17.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-annotations</artifactId>
+		    <version>2.17.0</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.fasterxml.jackson.core</groupId>
+		    <artifactId>jackson-databind</artifactId>
+		    <version>2.17.0</version>
+		</dependency>
+
+		<!-- Suporte para Java 8 Date/Time API (LocalDateTime, etc.) -->
+		<dependency>
+		    <groupId>com.fasterxml.jackson.datatype</groupId>
+		    <artifactId>jackson-datatype-jsr310</artifactId>
+		    <version>2.17.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>org.glassfish.jersey.media</groupId>
+		  <artifactId>jersey-media-json-jackson</artifactId>
+		  <version>${jersey.version}</version>
+		</dependency>
+
+
 
 	</dependencies>
 
@@ -149,7 +173,7 @@
 					</descriptorRefs>
 					<archive>
 						<manifest>
-							<mainClass>br.senac.rj.Main</mainClass>
+							<mainClass>br.senac.rj.backend.Main</mainClass>
 						</manifest>
 					</archive>
 				</configuration>

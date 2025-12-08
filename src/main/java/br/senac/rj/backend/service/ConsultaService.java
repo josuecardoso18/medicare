@@ -38,16 +38,16 @@ public class ConsultaService {
         List<Consulta> consultas = dao.buscarPorPaciente(emailPaciente);
         if (consultas.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND)
-                           .entity("{\"erro\":\"Nenhuma consulta encontrada para este paciente.\"}")
+                           .entity("{\"erro\":\"Nenhuma consulta encontrada.\"}")
                            .build();
         }
         return Response.ok(consultas).build();
     }
 
     
-    public Response deletar(Long id_consulta) {
+    public Response deletar(Long idConsulta) {
         try {
-            boolean removed = dao.deletarPorId(id_consulta);
+            boolean removed = dao.deletarPorId(idConsulta);
             if (!removed) {
                 return Response.status(Response.Status.NOT_FOUND)
                                .entity("{\"erro\":\"Consulta não encontrada.\"}")
