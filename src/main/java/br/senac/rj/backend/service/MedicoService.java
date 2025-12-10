@@ -17,98 +17,82 @@ public class MedicoService {
         Medico medicoSalvo = dao.salvar(medico);
         if (medicoSalvo == null) {
             return Response.status(Response.Status.BAD_REQUEST)
-            		.entity("{\"erro\":\"Não foi possível salvar o médico.\"}")
-            		.build();
+                    .entity("{\"erro\":\"Não foi possível salvar o médico.\"}")
+                    .type("application/json")
+                    .build();
         }
-        return Response.ok(medicoSalvo).build();
+        return Response.ok(medicoSalvo)
+                .type("application/json")
+                .build();
     }
 
     public Response buscar(Long id) {
         Medico MedicoObtido = dao.buscarPorId(id);
         if (MedicoObtido == null) {
             return Response.status(Response.Status.NOT_FOUND)
-            		.entity("{\"erro\":\"Médico não encontrado.\"}")
-            		.build();
+                    .entity("{\"erro\":\"Médico não encontrado.\"}")
+                    .type("application/json")
+                    .build();
         }
-        return Response.ok(MedicoObtido).build();
+        return Response.ok(MedicoObtido)
+                .type("application/json")
+                .build();
     }
-    
-//    public Response buscarPorNome(String nome) {
-//        Medico MedicoObtido = dao.buscarPorNome(nome);
-//        if (MedicoObtido == null) {
-//            return Response.status(Response.Status.NOT_FOUND)
-//            		.entity("{\"erro\":\"Nenhum médico encontrado com esse nome.\"}")
-//            		.build();
-//        }
-//        return Response.ok(MedicoObtido).build();
-//    }
-//    
-//    public Response buscarPorEsp(String especialidade) {
-//        Medico MedicoObtido = dao.buscarPorEsp(especialidade);
-//        if (MedicoObtido == null) {
-//            return Response.status(Response.Status.NOT_FOUND)
-//            		.entity("{\"erro\":\"Nenhum médico encontrado por essa especialidade.\"}")
-//            		.build();
-//        }
-//        return Response.ok(MedicoObtido).build();
-//    }
-//    
-//    
-//    public Response buscarPorEnd(String endereco) {
-//        Medico MedicoObtido = dao.buscarPorEsp(endereco);
-//        if (MedicoObtido == null) {
-//            return Response.status(Response.Status.NOT_FOUND)
-//            		.entity("{\"erro\":\"Nenhum médico encontrado por esse endereço.\"}")
-//            		.build();
-//        }
-//        return Response.ok(MedicoObtido).build();
-//    }
-    
+
     public Response buscarPorNome(String nome) {
         List<Medico> medicos = dao.buscarPorNome(nome);
         if (medicos.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND)
-                           .entity("{\"erro\":\"Nenhum médico encontrado com esse nome.\"}")
-                           .build();
+                    .entity("{\"erro\":\"Nenhum médico encontrado com esse nome.\"}")
+                    .type("application/json")
+                    .build();
         }
-        return Response.ok(medicos).build();
+        return Response.ok(medicos)
+                .type("application/json")
+                .build();
     }
 
     public Response buscarPorEsp(String especialidade) {
         List<Medico> medicos = dao.buscarPorEspecialidade(especialidade);
         if (medicos.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND)
-                           .entity("{\"erro\":\"Nenhum médico encontrado por essa especialidade.\"}")
-                           .build();
+                    .entity("{\"erro\":\"Nenhum médico encontrado por essa especialidade.\"}")
+                    .type("application/json")
+                    .build();
         }
-        return Response.ok(medicos).build();
+        return Response.ok(medicos)
+                .type("application/json")
+                .build();
     }
 
     public Response buscarPorEnd(String endereco) {
         List<Medico> medicos = dao.buscarPorEndereco(endereco);
         if (medicos.isEmpty()) {
             return Response.status(Response.Status.NOT_FOUND)
-                           .entity("{\"erro\":\"Nenhum médico encontrado por esse endereço.\"}")
-                           .build();
+                    .entity("{\"erro\":\"Nenhum médico encontrado por esse endereço.\"}")
+                    .type("application/json")
+                    .build();
         }
-        return Response.ok(medicos).build();
+        return Response.ok(medicos)
+                .type("application/json")
+                .build();
     }
 
-    
     public Response deletar(Long id) {
         try {
             boolean removed = dao.deletarPorId(id);
             if (!removed) {
                 return Response.status(Response.Status.NOT_FOUND)
-                               .entity("{\"erro\":\"Médico não encontrado.\"}")
-                               .build();
+                        .entity("{\"erro\":\"Médico não encontrado.\"}")
+                        .type("application/json")
+                        .build();
             }
-            return Response.noContent().build(); // 204
+            return Response.noContent().build(); // 204 sem corpo
         } catch (Exception e) {
             return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
-                           .entity("{\"erro\":\"Erro ao excluir médico.\"}")
-                           .build();
+                    .entity("{\"erro\":\"Erro ao excluir médico.\"}")
+                    .type("application/json")
+                    .build();
         }
     }
-
 }
